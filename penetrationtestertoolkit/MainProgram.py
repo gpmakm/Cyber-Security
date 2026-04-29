@@ -1,11 +1,21 @@
 from modules_pentest.port_scanner import scan_ports
 from modules_pentest.packet_sniffer import capture_packets
+from modules_pentest.PasswordGenerator import PatternGenerator
 
 print( "Welcome to the pentester")
 print("Available practices ")
 with open("D://PythonPrograms/Internship-Projects/TaskLists.txt","r") as f:
     content=f.readline()
     print(content)
+
+
+def passwordgen():
+    passwords=PatternGenerator()
+    filename="D://PythonPrograms/Internship-Projects/Passwords.txt"
+    passwords.save_to_file(filename)
+    with open(filename,"r") as g:
+        password=g.readlines()
+        print(password)
 def runPacketSniffer(interface, count):
     
 
@@ -32,4 +42,8 @@ elif command==2:
     interface = input("Enter the network interface to capture packets (e.g., 'eth0', 'wlan0'): ")
     count = int(input("Enter the number of packets to capture: "))
     runPacketSniffer(interface, count)
-
+elif command==3:
+    print("Below is the set of strong passwords try them:")
+    passwordgen()
+else:
+    print("No commands found!!")
